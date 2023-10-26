@@ -1,9 +1,7 @@
 package com.example.generic.controller;
 
-import com.example.generic.entity.BookDO;
-import com.example.generic.enums.StatusEnum;
-import com.example.generic.enums.TypeEnum;
-import com.example.generic.repo.BookRepo;
+import com.example.generic.dto.BookDTO;
+import com.example.generic.service.BookService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -21,23 +19,20 @@ import java.util.List;
 @RequiredArgsConstructor
 public class BookController {
 
-    private final BookRepo bookRepo;
+    private final BookService bookService;
 
     @GetMapping("{id}")
-    public BookDO getBook(@PathVariable String id) {
-        return bookRepo.findById(id).orElseThrow();
+    public BookDTO getBook(@PathVariable String id) {
+        return bookService.getBook(id);
     }
 
     @GetMapping()
-    public List<BookDO> listBooks() {
-        return bookRepo.findAll();
+    public List<BookDTO> listBooks() {
+        return bookService.listBooks();
     }
 
     @PostMapping
     public void save() {
-        bookRepo.save(BookDO.builder()
-                .status(StatusEnum.ACTIVE)
-                .type(TypeEnum.IN)
-                .build());
+        bookService.create();
     }
 }

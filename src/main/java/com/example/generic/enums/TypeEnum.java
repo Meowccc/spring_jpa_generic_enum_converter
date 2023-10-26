@@ -17,12 +17,13 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public enum TypeEnum implements DatabaseEnumType<String> {
 
-    IN("in"),
-    OUT("out"),
+    PRINTED("printed", "紙本"),
+    DIGITAL("digital", "數位"),
     ;
 
     @JsonValue
     private final String value;
+    private final String text;
 
     private static final Map<String, TypeEnum> ENUMS = Arrays.stream(TypeEnum.values()).collect(Collectors.toUnmodifiableMap(TypeEnum::getValue, Function.identity()));
 

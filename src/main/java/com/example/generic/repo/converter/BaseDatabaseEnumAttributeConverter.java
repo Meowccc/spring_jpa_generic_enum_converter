@@ -4,13 +4,14 @@ import com.example.generic.enums.DatabaseEnumType;
 import jakarta.persistence.AttributeConverter;
 
 /**
+ * Not recommended to use this solution
  * @author Meow
  */
 public abstract class BaseDatabaseEnumAttributeConverter<E extends DatabaseEnumType<V>, V> implements AttributeConverter<E, V> {
 
     private final Class<E> type;
 
-    public BaseDatabaseEnumAttributeConverter(Class<E> type) {
+    protected BaseDatabaseEnumAttributeConverter(Class<E> type) {
         this.type = type;
     }
 
