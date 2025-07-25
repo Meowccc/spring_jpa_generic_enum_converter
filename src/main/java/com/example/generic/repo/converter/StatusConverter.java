@@ -1,5 +1,6 @@
 package com.example.generic.repo.converter;
 
+import com.example.generic.enums.EnumConverter;
 import com.example.generic.enums.StatusEnum;
 import jakarta.persistence.AttributeConverter;
 
@@ -18,7 +19,6 @@ public class StatusConverter implements AttributeConverter<StatusEnum, String> {
     @Override
     public StatusEnum convertToEntityAttribute(String s) {
 
-
-        return Optional.of(StatusEnum.ENUMS.get(s)).orElse(null);
+        return Optional.of(EnumConverter.fromValue(s, StatusEnum.class)).orElse(null);
     }
 }
